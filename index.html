@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltVista - Real-Time Energy Monitoring</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-bolt"></i>
+            <h1>VoltVista</h1>
+        </div>
+        <nav>
+            <a href="#dashboard" class="nav-active">Dashboard</a>
+            <a href="#history">History</a>
+            <a href="#contact">Contact</a>
+            <a href="#signin" class="sign-in">Sign In</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>AI-powered Energy Insights for Every Home</h2>
+                <p>Track your power consumption in real-time</p>
+            </div>
+            <div class="hero-image-wrap">
+                <img src="photo.jpg" alt="VoltVista Dashboard" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Heading -->
+    <section class="dashboard-heading-section">
+        <div class="container">
+            <h2 class="dashboard-heading"><i class="fas fa-bolt"></i> Real-Time Data Dashboard</h2>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <main class="container">
+        <!-- Real-time Metrics -->
+        <section id="dashboard" class="dashboard-section">
+            <h2 class="section-title"><i class="fas fa-gauge-high"></i> Live Power Monitor</h2>
+            
+            <div class="metrics-grid">
+                <!-- Voltage Card -->
+                <div class="metric-card voltage">
+                    <div class="metric-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Voltage</h3>
+                        <p class="metric-value" id="voltageVal">230.0 V</p>
+                        <span class="metric-trend">Stable</span>
+                    </div>
+                </div>
+
+                <!-- Current Card -->
+                <div class="metric-card current">
+                    <div class="metric-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Current</h3>
+                        <p class="metric-value" id="currentVal">0.5 A</p>
+                        <span class="metric-trend">Normal</span>
+                    </div>
+                </div>
+
+                <!-- Power Card -->
+                <div class="metric-card power">
+                    <div class="metric-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Power</h3>
+                        <p class="metric-value" id="powerVal">115.0 W</p>
+                        <span class="metric-trend">Optimal</span>
+                    </div>
+                </div>
+
+                <!-- Status Card -->
+                <div class="metric-card status">
+                    <div class="metric-icon">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <div class="metric-info">
+                        <h3>Status</h3>
+                        <p class="metric-value" id="alertStatus">Normal</p>
+                        <span class="metric-trend" id="statusTrend">All Good</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appliance Breakdown -->
+        <section class="breakdown-section">
+            <div class="section-header">
+                <h2><i class="fas fa-sitemap"></i> Appliance Breakdown (CNN-NILM)</h2>
+                <div class="live-badge">
+                    <i class="fas fa-circle"></i> LIVE
+                </div>
+            </div>
+            
+            <div class="breakdown-content">
+                <div class="appliance-list">
+                    <div class="appliance-item ac">
+                        <div class="appliance-icon">
+                            <i class="fas fa-snowflake"></i>
+                        </div>
+                        <div class="appliance-info">
+                            <h4>Air Conditioner</h4>
+                            <p class="power-usage" id="acPower">46.0 W</p>
+                        </div>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 40%"></div>
+                        </div>
+                    </div>
+
+                    <div class="appliance-item refrigerator">
+                        <div class="appliance-icon">
+                            <i class="fas fa-refrigerator"></i>
+                        </div>
+                        <div class="appliance-info">
+                            <h4>Refrigerator</h4>
+                            <p class="power-usage" id="fridgePower">23.0 W</p>
+                        </div>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 20%"></div>
+                        </div>
+                    </div>
+
+                    <div class="appliance-item washing">
+                        <div class="appliance-icon">
+                            <i class="fas fa-soap"></i>
+                        </div>
+                        <div class="appliance-info">
+                            <h4>Washing Machine</h4>
+                            <p class="power-usage" id="washPower">28.8 W</p>
+                        </div>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 25%"></div>
+                        </div>
+                    </div>
+
+                    <div class="appliance-item lights">
+                        <div class="appliance-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="appliance-info">
+                            <h4>Lights</h4>
+                            <p class="power-usage" id="lightsPower">11.5 W</p>
+                        </div>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <div class="appliance-item other">
+                        <div class="appliance-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div class="appliance-info">
+                            <h4>Other Devices</h4>
+                            <p class="power-usage" id="otherPower">5.8 W</p>
+                        </div>
+                        <div class="usage-bar">
+                            <div class="usage-fill" style="width: 5%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="breakdown-chart">
+                    <canvas id="powerChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Data Upload & Analysis -->
+        <section class="upload-section">
+            <h2><i class="fas fa-cloud-upload-alt"></i> Smart Meter Data Analysis</h2>
+            <div class="upload-box">
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-file-csv"></i>
+                    <h3>Upload CSV Data</h3>
+                    <p>Upload your smart meter data for CNN analysis</p>
+                    <input type="file" id="csvFile" accept=".csv" hidden>
+                    <button class="upload-btn" onclick="document.getElementById('csvFile').click()">
+                        Choose File
+                    </button>
+                </div>
+                <div class="upload-info">
+                    <h4>Supported Format:</h4>
+                    <ul>
+                        <li>CSV files with timestamp, voltage, current, power columns</li>
+                        <li>Real-time appliance disaggregation</li>
+                        <li>CNN-based pattern recognition</li>
+                    </ul>
+                    <button class="analyze-btn" id="analyzeBtn" disabled>
+                        <i class="fas fa-brain"></i> Analyze with CNN
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Predictions Section -->
+        <section id="predictions" class="predictions-section">
+            <h2><i class="fas fa-crystal-ball"></i> AI Power Predictions</h2>
+            <div class="predictions-grid">
+                <div class="prediction-card">
+                    <h3>Next 1 Hour</h3>
+                    <div class="prediction-value" id="pred1h">125.4 W</div>
+                    <div class="prediction-meta">
+                        <span class="confidence">85% confidence</span>
+                        <span class="cost">₹ 0.10</span>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <h3>Next 3 Hours</h3>
+                    <div class="prediction-value" id="pred3h">118.2 W</div>
+                    <div class="prediction-meta">
+                        <span class="confidence">78% confidence</span>
+                        <span class="cost">₹ 0.28</span>
+                    </div>
+                </div>
+                <div class="prediction-card">
+                    <h3>Next 6 Hours</h3>
+                    <div class="prediction-value" id="pred6h">132.7 W</div>
+                    <div class="prediction-meta">
+                        <span class="confidence">72% confidence</span>
+                        <span class="cost">₹ 0.64</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Energy Statistics -->
+        <section class="stats-section">
+            <h2><i class="fas fa-chart-bar"></i> Energy Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-battery-half"></i>
+                    <div class="stat-info">
+                        <h3>Today's Usage</h3>
+                        <p class="stat-value">2.8 kWh</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <div class="stat-info">
+                        <h3>Cost Today</h3>
+                        <p class="stat-value">₹ 22.40</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-leaf"></i>
+                    <div class="stat-info">
+                        <h3>Carbon Saved</h3>
+                        <p class="stat-value">1.2 kg</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-bolt"></i>
+                    <div class="stat-info">
+                        <h3>Peak Today</h3>
+                        <p class="stat-value">450 W</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Powered by CNN-NILM Technology | Real-time Electricity Monitoring</p>
+            <p class="footer-credits">Made with <i class="fas fa-heart"></i> for Smart Energy Management</p>
+        </div>
+    </footer>
+
+    <!-- Loading Spinner -->
+    <div class="loading-spinner" id="loadingSpinner">
+        <div class="spinner"></div>
+        <p>Analyzing with CNN...</p>
+    </div>
+
+    <script src="script.js?v=2"></script>
+</body>
+</html>
